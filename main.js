@@ -11,25 +11,14 @@ function getDeltaTime()
 {
     endFrameMillis = startFrameMillis;
     startFrameMillis = Date.now();
-
-        // Find the delta time (dt) - the change in time since the last drawFrame
-        // We need to modify the delta time to something we can use.
-        // We want 1 to represent 1 second, so if the delta is in milliseconds
-        // we divide it by 1000 (or multiply by 0.001). This will make our 
-        // animations appear at the right speed, though we may need to use
-        // some large values to get objects movement and rotation correct
     var deltaTime = (startFrameMillis - endFrameMillis) * 0.001;
-    
-        // validate that the delta is within range
     if(deltaTime > 1)
         deltaTime = 1;
-        
     return deltaTime;
 }
 
 //-------------------- Don't modify anything above here
 
-//define game state values
 var STATE_SPLASH = 0;
 var STATE_GAME = 1;
 var STATE_GAMEOVER = 2;
@@ -46,9 +35,9 @@ var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 var LAYER_COUNT = 5;
 var LAYER_BACKGROUND = 0;
-var LAYER_BACKGROUND2 = 1;
+var LAYER_BACKGROUND_OBJECTS = 1;
 var LAYER_PLATFORMS = 2;
-var LAYER_GRASS_EDGES = 3;
+//var LAYER_GRASS_EDGES = 3;
 var LAYER_LADDERS = 4;
 var LAYER_OBJECT_ENEMIES = 5;
 var LAYER_OBJECT_TRIGGERS = 6;
@@ -243,7 +232,7 @@ function initialize() {
     
     musicWin = new Howl (
     {
-        urls: ["assets/LevelComplete.mp3"],
+        urls: ["assets/YouWin_Music.mp3"],
         loop: false,
         volume: 1,
         buffer: true,

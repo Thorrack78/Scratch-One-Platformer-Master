@@ -33,14 +33,13 @@ titleImg.src = "assets/TitleScreen_Image.jpg";
 var win = false;
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
-var LAYER_COUNT = 5;
+var LAYER_COUNT = 6;
 var LAYER_BACKGROUND = 0;
 var LAYER_BACKGROUND_OBJECTS = 1;
 var LAYER_PLATFORMS = 2;
-//var LAYER_GRASS_EDGES = 3;
-var LAYER_LADDERS = 4;
-var LAYER_OBJECT_ENEMIES = 5;
-var LAYER_OBJECT_TRIGGERS = 6;
+var LAYER_LADDERS = 3;
+var LAYER_OBJECT_ENEMIES = 4;
+var LAYER_OBJECT_TRIGGERS = 5;
 var MAP = {tw: 170, th: 15};
 var TILE = 35;
 var TILESET_TILE = TILE * 2;
@@ -65,8 +64,8 @@ var worldOffsetX = 0;
 var score = 0;
 var lives = 03;
 var hp = 3;
-var scoreBG = document.createElement("img");
-var heroHead = document.createElement("img");
+var Score_BGImage = document.createElement("img");
+var Health_Lives = document.createElement("img");
 var LifeHeart = document.createElement("img");
 var gameOverTimer = 9.22;
 
@@ -203,6 +202,7 @@ function initialize() {
             }
         }
     }
+	
     musicBackground = new Howl(
     {
         urls: ["assets/Game_Music.ogg"],
@@ -422,34 +422,35 @@ function runGame()
     }       
         
     //draw score
-    scoreBG.src = "assets/score-bg.png";
-    context.drawImage(scoreBG, 0, 0);
+    Score_BGImage.src = "assets/Score_BGImage.png";
+    context.drawImage(Score_BGImage, 0, 0);
     context.fillStyle = "gray";
     context.font = "Bold " + "20px Arial";
     context.textAlign = "end";
-    context.fillText(score, 634 , 470);
+    context.fillText(score, 570 , 31);
     if(score <= 0)
     {
         score = 0;
     }
     //draw lives
     context.textAlign = "start";
-    heroHead.src = "assets/hero-head.png";
-    context.drawImage(heroHead, 0, 0);
+    Health_Lives.src = "assets/Health_Lives.png";
+    context.drawImage(Health_Lives, 0, 0);
     if(lives < 10)
-        context.fillText(" x 0" + lives, 50, 60);
+        context.fillText(" x 0" + lives, 75, 80);
     else if(lives >= 10)
-        context.fillText(" x " + lives, 50, 60);
+        context.fillText(" x " + lives, 75, 80);
     if(lives > 99)
         lives = 99;
+	
     //draw hp
     LifeHeart.src = "assets/LifeHeart.png";
     if (hp >= 1)
-        context.drawImage(LifeHeart, 52, 23);
+        context.drawImage(LifeHeart, 55, 18);
     if (hp >= 2)
-        context.drawImage(LifeHeart, 52 + (LifeHeart.width + 2), 23);
+        context.drawImage(LifeHeart, 55 + (LifeHeart.width + 2), 18);
     if (hp >= 3)
-        context.drawImage(LifeHeart, 52 + ((LifeHeart.width + 2) + (LifeHeart.width + 2)), 23);
+        context.drawImage(LifeHeart, 55 + ((LifeHeart.width + 2) + (LifeHeart.width + 2)), 18);
     
     //when hp < 1, lose a life
     if (hp < 1)
@@ -470,9 +471,9 @@ function runGame()
         gameOver();
     }
     // draw the FPS
-    context.fillStyle = "#f00";
+    context.fillStyle = "#5a5a5a";
     context.font="14px Arial";
-    context.fillText("FPS: " + fps, 5, 20, 100);
+    context.fillText("FPS: " + fps, 5, 470, 100);
 }
 
 function runGameOver()

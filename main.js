@@ -33,13 +33,13 @@ titleImg.src = "assets/TitleScreen_Image.jpg";
 var win = false;
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
-var LAYER_COUNT = 6;
+var LAYER_COUNT = 3;
 var LAYER_BACKGROUND = 0;
 var LAYER_BACKGROUND_OBJECTS = 1;
 var LAYER_PLATFORMS = 2;
-var LAYER_LADDERS = 3;
-var LAYER_OBJECT_ENEMIES = 4;
-var LAYER_OBJECT_TRIGGERS = 5;
+//var LAYER_LADDERS = 3;
+var LAYER_OBJECT_ENEMIES = 3;
+//var LAYER_OBJECT_TRIGGERS = 5;
 var MAP = {tw: 170, th: 15};
 var TILE = 35;
 var TILESET_TILE = TILE * 2;
@@ -346,8 +346,7 @@ function runSplash()
 function runGame()
 {   
     var deltaTime = getDeltaTime();
-    
-    
+        
     player.update(deltaTime);
     for(var i=0; i<enemies.length; i++)
     {
